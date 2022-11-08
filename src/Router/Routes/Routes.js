@@ -5,6 +5,7 @@ import Blog from "../../Pages/Blog/Blog";
 import Error from "../../Pages/Error/Error";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
+import MyReviews from "../../Pages/MyReviews/MyReviews";
 import Registration from "../../Pages/Registration/Registration";
 import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails/ServiceDetails";
 
@@ -40,6 +41,10 @@ children: [
     {
      path: '/blog',
      element: <Blog></Blog>  
+    },
+    {
+     path: '/myReviews',
+     element: <MyReviews></MyReviews>
     },
     {
      path: '/*',
