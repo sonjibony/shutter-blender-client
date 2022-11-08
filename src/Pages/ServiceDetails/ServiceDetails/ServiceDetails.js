@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const ServiceDetails = () => {
     //using loader data
     const {title, img,detail,rating,price,_id} = useLoaderData();
+    const {user} = useContext(AuthContext);
 
     //review function
     const handleReview = async(event) => {
@@ -15,7 +17,7 @@ const ServiceDetails = () => {
         const review = {
         service:_id,
         serviceName: title,
-            user: name,
+            userName: name,
             email: email,
             review: userReview,
 
@@ -39,7 +41,7 @@ const ServiceDetails = () => {
         // console.log(review);
     }
     return (
-        <div>
+        <div className='w-11/12 mx-auto'>
                         <h1 className="text-4xl font-bold text-center mt-3 mb-10">Service Details & Reviews</h1>
 
            <div className='grid gap-6 grid-cols-1 lg:grid-cols-2'>
@@ -79,7 +81,7 @@ const ServiceDetails = () => {
            <input name='name' type="text" placeholder="Your Name" className="input input-ghost w-full input-bordered" />
            
            
-           <input name='email' type="text" placeholder="Your Email" className="input input-ghost w-full input-bordered"  />
+           <input name='email' type="text" placeholder="Your Email" defaultValue={user?.email} className="input input-ghost w-full input-bordered" readOnly  />
             </div>
             <textarea name='review' className="textarea textarea-bordered h-24 w-full mb-6" placeholder="Your Reviews"></textarea>
 <input className='btn btn-ghost mb-6' type="submit" value="Add your review" />
