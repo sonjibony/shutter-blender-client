@@ -6,7 +6,7 @@ import ServiceCard from '../Home/Services/ServiceCard';
 const AllServices = () => {
     //using loader to get api
     const allService = useLoaderData();
-    console.log(allService);
+    // console.log(allService);
     // const{title,rating,price,detail,img,service_id} = service
     return (
         <div>

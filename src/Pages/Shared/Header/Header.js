@@ -7,6 +7,7 @@ const Header = () => {
 const menuItems = <>
 <li><Link to='/'>Home</Link></li>
 <li><Link to='/blog'>Blog</Link></li>
+<li><Link to='/login'>login</Link></li>
 </>
 
     return (
