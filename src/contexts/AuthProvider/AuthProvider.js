@@ -1,62 +1,67 @@
-import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth'
-import app from '../../firebase/firebase.config';
+import React, { createContext, useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import app from "../../firebase/firebase.config";
 
 export const AuthContext = createContext();
-const auth = getAuth(app)
+const auth = getAuth(app);
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
- const [user, setUser] = useState(null);
- const [loading, setLoading] = useState(true)
-    
-//google
-const providerLogin = (provider) => {
-    setLoading(true)
-    return signInWithPopup(auth, provider);
-};
-
-//registration
-const createUser = (email, password) =>{
+  //google
+  const providerLogin = (provider) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email,password)
-};
+    return signInWithPopup(auth, provider);
+  };
 
-//login
-const signIn = (email,password) => {
-    setLoading(true)
-    return signInWithEmailAndPassword(auth, email,password);
-};
+  //registration
+  const createUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-//updating user
-const updateUserProfile = (profile) =>{
+  //login
+  const signIn = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
+  //updating user
+  const updateUserProfile = (profile) => {
     return updateProfile(auth.currentUser, profile);
-};
+  };
 
-
-//log out
-const logOut = () => {
-    setLoading(true)
+  //log out
+  const logOut = () => {
+    setLoading(true);
     return signOut(auth);
-};
+  };
 
-const onSetUser = (userObj) =>{
+  const onSetUser = (userObj) => {
     setUser(userObj);
-};
-//observer
-useEffect(() => {
-const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser)
-    setLoading(false);
-});
+  };
+  //observer
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
 
-return () => {
-    unsubscribe();
-}
-},[])
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
-   const authInfo = {
+  const authInfo = {
     user,
     providerLogin,
     logOut,
@@ -65,13 +70,11 @@ return () => {
     signIn,
     loading,
     updateUserProfile,
-};
+  };
 
-    return (
-<AuthContext.Provider value={authInfo}>
-{children}
-</AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

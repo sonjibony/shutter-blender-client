@@ -31,7 +31,7 @@ const ReviewCard = ({reviews,handleDelete}) => {
         </td>
         
         <th>
-        <Link to={`/update/${review._id}`}>
+        <Link to={`/update/${_id}`}>
         <button className="btn btn-ghost btn-xs">Edit</button>
           </Link>
           <button onClick={() => handleDelete(_id)} className="btn btn-ghost btn-xs">delete</button>

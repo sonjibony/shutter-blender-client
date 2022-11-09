@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import useTitle from '../../../hooks/useTitle';
 import ServiceCard from './ServiceCard';
 
 const Services = () => {
@@ -13,7 +12,7 @@ const Services = () => {
     return (
         <div>
             <div className='text-start'> 
-<p className="text-2xl font-bold mb-4 mt-10">SERVICE</p>
+<p className=" text-green-700 text-2xl font-bold mb-2 mt-10">SERVICE</p>
 <h1 className="text-5xl font- mb-3">My Services</h1>
             <h1 className="text-xl mb-6">Choose the service that meets your need</h1>
             </div>
@@ -28,7 +27,7 @@ service={service}
             </div>
             <div className='flex justify-center'>
 <Link to='/services'>
-            <button className='btn btn-accent my-6 '>See All Services</button>
+            <button className='btn  border-0 my-6 '>See All Services</button>
             </Link>
             </div>
         </div>
