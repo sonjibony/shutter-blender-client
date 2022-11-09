@@ -1,12 +1,19 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
 
+const [error, setError] = useState('');
 const{providerLogin, signIn} = useContext(AuthContext);
+
+//to navigate
 const navigate = useNavigate();
+
+//getting location
+const location = useLocation();
+const from = location.state?.from?.pathname || '/';
 
 //google provider
 const googleProvider = new GoogleAuthProvider()
@@ -16,9 +23,12 @@ const handleGoogleSignIn = () =>{
 providerLogin(googleProvider)
 .then(result => {
   const user = result.user;
+  navigate(from, {replace: true});
+
   console.log(user);
 })
 .catch(error => console.error(error))
+
 }
 
 //login
@@ -27,14 +37,19 @@ const handleSignIn = event => {
   const form = event.target;
 const email = form.email.value;
 const password = form.password.value;
+
 signIn(email,password)
 .then(result => {
   const user = result.user;
   console.log(user);
-  navigate('/');
   form.reset();
+  setError('');
+  navigate(from, {replace: true});
 })
-.catch(error => console.error(error))
+.catch(error => {
+  console.error(error)
+  setError(error.message);
+})
 }
 
     return (
@@ -63,7 +78,12 @@ signIn(email,password)
           <label className="label">
             <p className='text-lg'> New here?
              <Link to='/register' className=" text-lg label-text-alt link link-hover"> Register.</Link></p>
-          </label>
+             </label>
+             
+
+            <h2 className='text-red-500'> {error}</h2>
+             
+          
         </div>
         <div className="form-control mt-6">
           <button className="btn btn-primary mb-5">Login</button>

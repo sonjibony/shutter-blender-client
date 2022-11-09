@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
 
-const ReviewCard = ({reviews,handleDelete}) => {
-    const {serviceName,userName, review,_id} = reviews;
-    
+const ReviewRow = ({reviews}) => {
+
+    const {serviceName,userName, review,img} = reviews;
+    // console.log(reviews);
 
     const {user} = useContext(AuthContext);
-
-    
 
     return (
         <tr>
@@ -16,7 +15,10 @@ const ReviewCard = ({reviews,handleDelete}) => {
           <div className="flex flex-wrap items-center space-x-3">
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img src={user.photoURL}  alt="Avatar Tailwind CSS Component" />
+              {img?
+    <img src={img} alt="" />
+    : <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwJoaqh-Ehrbg2Qf6Nk_XiblTuvyyiOwsc2g&usqp=CAU" alt="" />
+}
               </div>
             </div>
             <div>
@@ -29,12 +31,9 @@ const ReviewCard = ({reviews,handleDelete}) => {
          {review}
         </td>
         
-        <th>
-          <button className="btn btn-ghost btn-xs">Edit</button>
-          <button onClick={() => handleDelete(_id)} className="btn btn-ghost btn-xs">delete</button>
-        </th>
+        
       </tr>
     );
 };
 
-export default ReviewCard;
+export default ReviewRow;

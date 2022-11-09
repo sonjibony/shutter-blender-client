@@ -64,6 +64,8 @@ user?.uid?
     <>
          <li><Link to='/'>Home</Link></li>
 <li><Link to='/blog'>Blog</Link></li>
+<li><Link to='/myReviews'>My Reviews</Link></li>
+
     </>
     }
     </ul>
