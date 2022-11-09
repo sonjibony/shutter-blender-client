@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const ReviewCard = ({reviews,handleDelete}) => {
-    const {serviceName,userName, review,_id} = reviews;
+    const {serviceName,userName, review,_id, state} = reviews;
     
 
     const {user} = useContext(AuthContext);
@@ -30,7 +31,9 @@ const ReviewCard = ({reviews,handleDelete}) => {
         </td>
         
         <th>
-          <button className="btn btn-ghost btn-xs">Edit</button>
+        <Link to={`/update/${review._id}`}>
+        <button className="btn btn-ghost btn-xs">Edit</button>
+          </Link>
           <button onClick={() => handleDelete(_id)} className="btn btn-ghost btn-xs">delete</button>
         </th>
       </tr>

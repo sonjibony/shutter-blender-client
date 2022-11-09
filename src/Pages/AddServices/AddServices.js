@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import ServiceCard from '../Home/Services/ServiceCard';
 
 const AddServices = () => {
+    useTitle('Add Services')
     const {user} = useContext(AuthContext);
 
     const onAddService = event => {

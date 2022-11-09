@@ -9,6 +9,7 @@ import Login from "../../Pages/Login/Login";
 import MyReviews from "../../Pages/MyReviews/MyReviews";
 import Registration from "../../Pages/Registration/Registration";
 import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails/ServiceDetails";
+import Update from "../../Pages/Update/Update";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -51,6 +52,11 @@ children: [
     {
      path: '/addServices',
      element: <PrivateRoute><AddServices></AddServices></PrivateRoute>
+    },
+    {
+        path: '/update/:id',
+        element: <Update></Update>,
+        
     },
     {
      path: '/*',
