@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import useTitle from "../../../hooks/useTitle";
 import ReviewRow from "./ReviewRow/ReviewRow";
+import { FaStar } from 'react-icons/fa';
 
 const ServiceDetails = () => {
+    useTitle('Service Detail')
   //using loader data
   const { title, img, detail, rating, price, _id } = useLoaderData();
   const { user } = useContext(AuthContext);
@@ -77,7 +80,11 @@ const ServiceDetails = () => {
           <img className="rounded w-full" src={img} alt="" />
           <div className="flex justify-start gap-6 my-3">
             <h1 className="text-2xl font-semibold">Price: ${price}</h1>
-            <h1 className="text-2xl font-semibold">Price: ${rating}</h1>
+            <div className="flex items-center justify-center gap-2">
+
+            <p className="text-2xl font-semibold">Ratings: {rating}</p>
+<FaStar className="text-warning text-2xl"></FaStar>
+            </div>
           </div>
         </div>
         <div>

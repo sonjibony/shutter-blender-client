@@ -2,7 +2,9 @@ import React, { useContext, useEffect } from "react";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import axios from "axios";
+import useTitle from "../../hooks/useTitle";
 const Update = () => {
+    useTitle('Edit Review')
   const { user } = useContext(AuthContext);
   const { review, ...test } = useLoaderData();
 

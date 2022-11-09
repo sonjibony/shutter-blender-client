@@ -9,14 +9,14 @@ const Gallery = () => {
 
         <div className='my-9'>
             <div className='my-9'>
-                <h1 className="text-5xl font-semibold mb-4">My Gallery</h1>
+                <h1 className="text-3xl font-bold mb-2 text-green-400">MY GALLERY</h1>
                 <p className='text-2xl'>
-Here are some of my favorite work. I have been clicking them over the years. They are no paid they are just for my hobby.
+Here are some of my favorite work. That is always my pride.
                 </p>
             </div>
 <div className="carousel carousel-end rounded">
   <div className="carousel-item mr-5">
-    
+
     <PhotoView src="https://images.pexels.com/photos/1671324/pexels-photo-1671324.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1671324.jpg&fm=jpg&h=350&w=500&fit=crop&_gl=1*1xbz7ge*_ga*NDAwNTIyNDM1LjE2NTg5OTQ3NzI.*_ga_8JE65Q40S6*MTY2Nzg1MzAxOC4xNi4xLjE2Njc4NTMwNTMuMC4wLjA.">
 
     <img src="https://images.pexels.com/photos/1671324/pexels-photo-1671324.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1671324.jpg&fm=jpg&h=350&w=500&fit=crop&_gl=1*1xbz7ge*_ga*NDAwNTIyNDM1LjE2NTg5OTQ3NzI.*_ga_8JE65Q40S6*MTY2Nzg1MzAxOC4xNi4xLjE2Njc4NTMwNTMuMC4wLjA." alt="Drink" />
