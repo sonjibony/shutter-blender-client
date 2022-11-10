@@ -42,6 +42,7 @@ const AuthProvider = ({ children }) => {
 
   //log out
   const logOut = () => {
+     localStorage.removeItem('shutter-token');
     setLoading(true);
     return signOut(auth);
   };

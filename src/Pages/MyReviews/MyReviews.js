@@ -2,23 +2,30 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import ReviewCard from "./ReviewCard";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const MyReviews = () => {
   useTitle("My Reviews");
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
 
-  // console.log(reviews);
   useEffect(() => {
     fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
       headers: {
-        authorization: `Bearer ${localStorage.getItem("shutter-token")}`,
+        authorization: `Bearer ${localStorage.getItem("shutter-token")|| user?.accessToken}`,
       },
     })
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, [user?.email]);
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
+
+      .then((data) => {
+        setReviews(data);
+      });
+  }, [user, logOut]);
 
   //handle delete
   const handleDelete = (id) => {
@@ -32,11 +39,7 @@ const MyReviews = () => {
         .then((data) => {
           console.log(data);
           if (data.deletedCount > 0) {
-            Swal.fire(
-              'Done!',
-              'Successfully Deleted!',
-              'success'
-            )
+            Swal.fire("Done!", "Successfully Deleted!", "success");
             const remaining = reviews.filter((odr) => odr._id !== id);
             setReviews(remaining);
           }
@@ -56,8 +59,8 @@ const MyReviews = () => {
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
+                  <th>Review</th>
+                  <th>Operations</th>
                   <th></th>
                 </tr>
               </thead>

@@ -28,7 +28,9 @@ const Update = () => {
   return (
     <div className="w-11/12 mx-auto">
       <form onSubmit={update}>
-        <h2 className="text-3xl font-bold text-green-400 my-6">Update Your Review.</h2>
+        <h2 className="text-3xl font-bold text-green-400 my-6">
+          Update Your Review.
+        </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-6">
           <input

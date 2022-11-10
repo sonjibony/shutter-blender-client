@@ -3,29 +3,36 @@ import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useTitle from "../../../hooks/useTitle";
 import ReviewRow from "./ReviewRow/ReviewRow";
-import { FaStar } from 'react-icons/fa';
-import Swal from 'sweetalert2'
+import { FaStar, FaHome } from "react-icons/fa";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const ServiceDetails = () => {
-    useTitle('Service Detail')
-  //using loader data
-  const { title, img, detail, rating, price, _id } = useLoaderData();
-  const { user } = useContext(AuthContext);
-  function fetchReviews (){
-    fetch(`http://localhost:5000/reviews?service=${_id}`,{
-      headers:{
-        authorization: `Bearer ${localStorage.getItem('shutter-token')}`
+  useTitle("Service Detail");
 
-      }
-    })
+  // const [services, setServices] = useState([]);
+  // console.log(services);
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/limitedServices")
+  //     .then((res) => res.json())
+
+  //     .then((data) => {
+  //       console.log(data);
+  //       setServices(data);
+  //     });
+  // }, []);
+  //using loader data
+
+  const { title, img, detail, rating, price, _id } = useLoaderData();
+
+  const { user } = useContext(AuthContext);
+  function fetchReviews() {
+    fetch(`http://localhost:5000/allReviews?service=${_id}`)
       .then((res) => res.json())
+
       .then((data) => {
         if (data.acknowledged) {
-          Swal.fire(
-            'Done!',
-            'Successfully Added!',
-            'success'
-          );
+          Swal.fire("Done!", "Successfully Added!", "success");
         }
         setAllReviews(data);
       })
@@ -47,27 +54,15 @@ const ServiceDetails = () => {
       review: userReview,
       img: user.photoURL,
     };
-    fetch("http://localhost:5000/reviews", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(review),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.acknowledged) {
-          Swal.fire(
-            'Done!',
-            'Successfully Added!',
-            'success'
-          );          fetchReviews();
+    axios.post("http://localhost:5000/allReviews", review)
+      .then((res) => {
+        if (res?.data?.acknowledged) {
+          Swal?.fire("Done!", "Successfully Added!", "success");
+          fetchReviews();
           form.reset();
         }
       })
       .catch((error) => console.error(error));
-    // console.log(review);
   };
 
   const [allReviews, setAllReviews] = useState([]);
@@ -75,11 +70,8 @@ const ServiceDetails = () => {
   useEffect(() => {
     fetchReviews();
   }, [_id]);
-  console.log(allReviews);
 
-  //  const navigate = useNavigate()
   const location = useLocation();
-  // const from = location?.state?.from?.pathname || '/all-services';
 
   return (
     <div className="w-11/12 mx-auto">
@@ -94,10 +86,15 @@ const ServiceDetails = () => {
           <div className="flex justify-start gap-6 my-3">
             <h1 className="text-2xl font-semibold">Price: ${price}</h1>
             <div className="flex items-center justify-center gap-2">
-
-            <p className="text-2xl font-semibold">Ratings: {rating}</p>
-<FaStar className="text-warning text-2xl"></FaStar>
+              <p className="text-2xl font-semibold">Ratings: {rating}</p>
+              <FaStar className="text-warning text-2xl"></FaStar>
             </div>
+
+            <Link to="/">
+              <button className="  flex items-center text-2xl gap-3">
+                Home <FaHome></FaHome>
+              </button>
+            </Link>
           </div>
         </div>
         <div>
@@ -107,7 +104,9 @@ const ServiceDetails = () => {
         </div>
       </div>
       <div>
-        <h1 className="text-4xl font-bold my-5 text-center">REVIEWS </h1>
+        <h1 className="text-4xl font-bold my-5 text-center flex justify-center items-center gap-4">
+          REVIEWS{" "}
+        </h1>
 
         {/* review message */}
         <div className="w-11/12 mx-auto mb-10 ">
@@ -125,21 +124,18 @@ const ServiceDetails = () => {
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
+                  <th>REVIEW</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                {allReviews.map((review) => (
+                {allReviews?.map((review) => (
                   <ReviewRow key={review._id} reviews={review}></ReviewRow>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
-
-        {/* add a review or login */}
 
         {user?.uid ? (
           <>

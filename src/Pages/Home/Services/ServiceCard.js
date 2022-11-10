@@ -26,8 +26,7 @@ const ServiceCard = ({ service }) => {
             <p className="text-2xl font-semibold"> {rating}</p>
             <Link to={`/services/${_id}`}> 
               <button className="btn btn-outline font-bold btn-success text-lg border-0" 
-              // style={{backgroundColor:"#E84545"}}
-              // style={{color:"#E84545", backgroundColor:"white", border:"2px solid "}}
+
 
               >See Details</button>
             </Link>

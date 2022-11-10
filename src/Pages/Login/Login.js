@@ -26,7 +26,7 @@ const Login = () => {
         const user = result.user;
         navigate(from, { replace: true });
 
-        console.log(user);
+          console.log(user);
       })
       .catch((error) => console.error(error));
   };
@@ -47,7 +47,7 @@ const Login = () => {
         };
         console.log(currentUser);
 
-        //get jwt token
+        //get jwt token-----------------
         fetch("http://localhost:5000/jwt", {
           method: "POST",
           headers: {
@@ -59,11 +59,11 @@ const Login = () => {
           .then((data) => {
             console.log(data);
             localStorage.setItem("shutter-token", data.token);
+            //edited later
+            form.reset();
+            setError(" ");
+            navigate(from, { replace: true });
           });
-
-        form.reset();
-        setError("");
-        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);

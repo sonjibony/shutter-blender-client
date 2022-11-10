@@ -1,6 +1,7 @@
 import React from "react";
 
 const Contact = () => {
+  //EXTRA SECTION FOR BONUS
   return (
     <div
       className="hero h-64 mb-7 rounded"
@@ -17,8 +18,7 @@ const Contact = () => {
 
           <div className="form-control w-80">
             <label className="label">
-            <p className="text-start">Enter your gmail account </p>
-
+              <p className="text-start">Enter your gmail account </p>
             </label>
             <div className="relative">
               <input
