@@ -9,9 +9,7 @@ const Registration = () => {
   //using context
   const { createUser, updateUserProfile, onSetUser } = useContext(AuthContext);
 
-  const navigate = useNavigate()
-  // const location = useLocation()
-  // const from = location.state?.from?.pathname || '/';
+  const navigate = useNavigate();
 
   //implementing registration
   const handleRegistration = (event) => {
@@ -21,7 +19,6 @@ const Registration = () => {
     const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(name,email,password,photoURL);
 
     createUser(email, password)
       .then((result) => {
@@ -29,7 +26,7 @@ const Registration = () => {
         console.log(user);
         setError("");
         form.reset();
-        navigate('/');
+        navigate("/");
         const profile = {
           displayName: name,
           photoURL: photoURL,
@@ -37,7 +34,6 @@ const Registration = () => {
         updateUserProfile(profile)
           .then((e) => {
             onSetUser(auth?.currentUser || {});
-            console.log(e);
           })
           .catch((error) => console.error(error));
       })
@@ -47,13 +43,14 @@ const Registration = () => {
       });
   };
 
-  //updating user
-
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <p className="py-6"></p>
+    <div className="hero my-7">
+      <div className="hero-content flex-col lg:flex-row">
+        <div className="w-1/2">
+          <img
+            src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?w=740&t=st=1668070796~exp=1668071396~hmac=545e91f6fa5f1bc3e2507873cac940afaef3370ccb7528b25523cfd3a75c66f6"
+            alt=""
+          />
         </div>
 
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -81,6 +78,7 @@ const Registration = () => {
                 name="photoURL"
                 placeholder="Photo URL"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
@@ -111,7 +109,7 @@ const Registration = () => {
                   Already have an account?
                   <Link
                     to="/login"
-                    className=" text-lg label-text-alt link link-hover"
+                    className=" text-lg label-text-alt link link-hover text-blue-500"
                   >
                     {" "}
                     Login

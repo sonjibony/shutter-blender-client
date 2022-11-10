@@ -18,10 +18,18 @@ setLoader(false)
   }, []);
  
   if (loading) {
-    return <h1 className="text-7xl">Loading...</h1>
+return (
+  <div className="flex justify-center">
+
+    <button className="btn text-5xl bg-white text-black loading my-40"></button>
+  </div>
+
+)
 }
   return (
-    <div className="w-11/12 mx-auto">
+    <>
+    
+    <div className=" flex flex-col justify-center items-center">
       <div className="text-center">
         <p
           className="  text-2xl font-bold  mt-10 text-green-300"
@@ -37,11 +45,13 @@ setLoader(false)
         </h1>
       </div>
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  ">
-        {services.map((service) => (
+        {services?.map((service) => (
           <ServiceCard key={service.service_id} service={service}></ServiceCard>
         ))}
       </div>
-      <div className="flex justify-end">
+      
+    </div>
+    <div className="flex justify-end mr-8">
         <Link to="/services">
           <button
             className="btn btn-outline border-2 btn-success text-white font-bold  mt-6 mb-9"
@@ -51,7 +61,7 @@ setLoader(false)
           </button>
         </Link>
       </div>
-    </div>
+    </>
   );
 };
 

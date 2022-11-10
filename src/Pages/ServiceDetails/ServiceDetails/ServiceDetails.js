@@ -4,6 +4,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useTitle from "../../../hooks/useTitle";
 import ReviewRow from "./ReviewRow/ReviewRow";
 import { FaStar } from 'react-icons/fa';
+import Swal from 'sweetalert2'
 
 const ServiceDetails = () => {
     useTitle('Service Detail')
@@ -11,11 +12,20 @@ const ServiceDetails = () => {
   const { title, img, detail, rating, price, _id } = useLoaderData();
   const { user } = useContext(AuthContext);
   function fetchReviews (){
-    fetch(`http://localhost:5000/reviews?service=${_id}`)
+    fetch(`http://localhost:5000/reviews?service=${_id}`,{
+      headers:{
+        authorization: `Bearer ${localStorage.getItem('shutter-token')}`
+
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          alert("successfully added");
+          Swal.fire(
+            'Done!',
+            'Successfully Added!',
+            'success'
+          );
         }
         setAllReviews(data);
       })
@@ -48,8 +58,11 @@ const ServiceDetails = () => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          alert("successfully added");
-          fetchReviews();
+          Swal.fire(
+            'Done!',
+            'Successfully Added!',
+            'success'
+          );          fetchReviews();
           form.reset();
         }
       })

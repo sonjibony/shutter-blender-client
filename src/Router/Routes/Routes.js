@@ -13,58 +13,72 @@ import Update from "../../Pages/Update/Update";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
-    {
-path: '/',
-element: <Main></Main>,
-children: [
-    {
-     path: '/',
-     element: <Home></Home>   
-    },
+  {
+    path: "/",
+    element: <Main></Main>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
 
-    {
-     path: '/services',
-     element: <AllServices></AllServices>,
-    loader: () => fetch('http://localhost:5000/services'),
-    },
-    {
-     path: '/services/:id',
-     element: <ServiceDetails></ServiceDetails>,
-    loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`),
-    },
+      {
+        path: "/services",
+        element: <AllServices />,
+        loader: () => fetch("http://localhost:5000/services"),
+        errorElement: <h1>404</h1>,
+      },
+      {
+        path: "/services/:id",
+        element: <ServiceDetails></ServiceDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/services/${params.id}`),
+      },
 
-    {
-     path: '/login',
-     element: <Login></Login>   
-    },
-    {
-     path: '/register',
-     element: <Registration></Registration>  
-    },
-    {
-     path: '/blog',
-     element: <Blog></Blog>  
-    },
-    {
-     path: '/myReviews',
-     element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute>
-    },
-    {
-     path: '/addServices',
-     element: <PrivateRoute><AddServices></AddServices></PrivateRoute>
-    },
-    {
-        path: '/update/:id',
-        element: <PrivateRoute><Update></Update></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/reviews/${params.id}`),
-        
-    },
-    {
-     path: '/*',
-     element: <Error></Error>  
-    },
-]
-    }
-])
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Registration></Registration>,
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
+      },
+      {
+        path: "/myReviews",
+        element: (
+          <PrivateRoute>
+            <MyReviews></MyReviews>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/addServices",
+        element: (
+          <PrivateRoute>
+            <AddServices></AddServices>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <Update></Update>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/reviews/${params.id}`),
+      },
+      {
+        path: "/*",
+        element: <Error></Error>,
+      },
+    ],
+  },
+]);
 
 export default router;
