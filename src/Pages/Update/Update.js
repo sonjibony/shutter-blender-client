@@ -17,7 +17,7 @@ const Update = () => {
     console.log(test._id);
     if (test._id) {
       axios
-        .put(`http://localhost:5000/reviews/${test._id}`, { review })
+        .put(`https://shutter-blender-server.vercel.app/reviews/${test._id}`, { review })
         .then((res) => {
           navigation(-1);
         });

@@ -13,7 +13,7 @@ const ServiceDetails = () => {
   // const [services, setServices] = useState([]);
   // console.log(services);
   // useEffect(() => {
-  //   fetch("http://localhost:5000/limitedServices")
+  //   fetch("https://shutter-blender-server.vercel.app/limitedServices")
   //     .then((res) => res.json())
 
   //     .then((data) => {
@@ -27,7 +27,7 @@ const ServiceDetails = () => {
 
   const { user } = useContext(AuthContext);
   function fetchReviews() {
-    fetch(`http://localhost:5000/allReviews?service=${_id}`)
+    fetch(`https://shutter-blender-server.vercel.app/allReviews?service=${_id}`)
       .then((res) => res.json())
 
       .then((data) => {
@@ -54,7 +54,7 @@ const ServiceDetails = () => {
       review: userReview,
       img: user.photoURL,
     };
-    axios.post("http://localhost:5000/allReviews", review)
+    axios.post("https://shutter-blender-server.vercel.app/allReviews", review)
       .then((res) => {
         if (res?.data?.acknowledged) {
           Swal?.fire("Done!", "Successfully Added!", "success");

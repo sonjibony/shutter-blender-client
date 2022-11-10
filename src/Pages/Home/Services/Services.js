@@ -7,7 +7,7 @@ const Services = () => {
   const [loading, setLoader] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/services?limit=3")
+    fetch("https://shutter-blender-server.vercel.app/services?limit=3")
       .then((res) => res.json())
 
       .then((data) => {

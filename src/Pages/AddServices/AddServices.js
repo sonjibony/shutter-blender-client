@@ -31,7 +31,7 @@ const AddServices = () => {
       email,
     };
 
-    fetch("http://localhost:5000/services", {
+    fetch("https://shutter-blender-server.vercel.app/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",

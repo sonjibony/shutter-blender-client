@@ -10,7 +10,7 @@ const MyReviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+    fetch(`https://shutter-blender-server.vercel.app/reviews?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("shutter-token")|| user?.accessToken}`,
       },
@@ -32,7 +32,7 @@ const MyReviews = () => {
     const proceed = window.confirm("Do you want to delete this review?");
 
     if (proceed) {
-      fetch(`http://localhost:5000/reviews/${id}`, {
+      fetch(`https://shutter-blender-server.vercel.app/reviews/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
