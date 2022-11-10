@@ -42,7 +42,7 @@ const AuthProvider = ({ children }) => {
 
   //log out
   const logOut = () => {
-     localStorage.removeItem('shutter-token');
+    localStorage.removeItem("shutter-token");
     setLoading(true);
     return signOut(auth);
   };
@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
   //observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      setUser(currentUser||{});
       setLoading(false);
     });
 

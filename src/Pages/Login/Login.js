@@ -26,7 +26,29 @@ const Login = () => {
         const user = result.user;
         navigate(from, { replace: true });
 
-          console.log(user);
+        const currentUser = {
+          email: user.email,
+        };
+        //get jwt token-----------------
+        fetch("https://shutter-blender-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("shutter-token", data.token);
+            //edited later
+            setError(" ");
+            navigate(from, { replace: true });
+          })
+          .catch((error) => {
+            console.error(error);
+            setError(error.message);
+          });
       })
       .catch((error) => console.error(error));
   };

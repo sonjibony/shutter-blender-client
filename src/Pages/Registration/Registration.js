@@ -26,20 +26,45 @@ const Registration = () => {
         console.log(user);
         setError("");
         form.reset();
-        navigate("/");
         const profile = {
           displayName: name,
           photoURL: photoURL,
         };
+        const currentUser = {
+          email: user.email,
+        };
+        //get jwt token-----------------
+        fetch("https://shutter-blender-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data)
+            localStorage.setItem("shutter-token", data.token);
+            //edited later
+            form.reset();
+            setError(" ");
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.error(error);
+            setError(error.message);
+          });
         updateUserProfile(profile)
           .then((e) => {
             onSetUser(auth?.currentUser || {});
           })
           .catch((error) => console.error(error));
+        navigate("/");
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
+      
       });
   };
 
