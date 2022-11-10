@@ -4,17 +4,28 @@ import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+  const [loading, setLoader] = useState(true);
+
   useEffect(() => {
     fetch("http://localhost:5000/limitedServices")
       .then((res) => res.json())
-      .then((data) => setServices(data));
+
+      .then((data) =>{ 
+setServices(data)
+setLoader(false)
+
+      });
   }, []);
+ 
+  if (loading) {
+    return <h1 className="text-7xl">Loading...</h1>
+}
   return (
     <div className="w-11/12 mx-auto">
       <div className="text-start">
         <p
-          className="  text-2xl font-bold mb-2 mt-10"
-          style={{ color: "#84A9CD" }}
+          className=" text-green-400 text-2xl font-bold  mt-10"
+          // style={{ color: "#E84545" }}
         >
           SERVICE
         </p>
@@ -33,8 +44,8 @@ const Services = () => {
       <div className="flex justify-center">
         <Link to="/services">
           <button
-            className="btn btn-success text-white font-bold border-0  my-6 "
-            // style={{ backgroundColor: "#84A9CD" }}
+            className="btn btn-outline border-2 btn-success text-white font-bold  mt-6 mb-9"
+            // style={{ backgroundColor: "#E84545" , border:"2px solid"}}
           >
             See All Services
           </button>

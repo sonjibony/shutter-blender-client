@@ -14,7 +14,7 @@ const ServiceCard = ({ service }) => {
           <img className="rounded" src={img} alt="Shoes" />
         </PhotoView>
         <div className="card-body">
-          <h2 className="card-title text-2xl" style={{color:"#84A9CD"}}>{title}</h2>
+          <h2 className="card-title text-2xl font-bold">{title}</h2>
           {detail.length > 100 ? (
             <p className="">{detail.slice(0, 100) + "..."}</p>
           ) : (
@@ -24,9 +24,10 @@ const ServiceCard = ({ service }) => {
             <p className="text-2xl font-semibold">Price: ${price}</p>
             <FaStar className="text-2xl text-warning"></FaStar>
             <p className="text-2xl font-semibold"> {rating}</p>
-            <Link to={`/services/${_id}`}>
-              <button className="btn  btn-outline btn-success" 
-              // style={{color:"#84A9CD", backgroundColor:"white", border:"2px solid "}}
+            <Link to={`/services/${_id}`}> 
+              <button className="btn btn-outline font-bold btn-success text-lg border-0" 
+              // style={{backgroundColor:"#E84545"}}
+              // style={{color:"#E84545", backgroundColor:"white", border:"2px solid "}}
 
               >See Details</button>
             </Link>

@@ -55,7 +55,7 @@ children: [
     },
     {
         path: '/update/:id',
-        element: <Update></Update>,
+        element: <PrivateRoute><Update></Update></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/reviews/${params.id}`),
         
     },

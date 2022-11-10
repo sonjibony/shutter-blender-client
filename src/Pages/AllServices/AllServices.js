@@ -7,21 +7,25 @@ import ServiceCard from '../Home/Services/ServiceCard';
 const AllServices = () => {
     useTitle('Services');
     //using loader to get api
+    // const [loading, setLoader] = useState(true)
+
     const allService = useLoaderData();
-    // console.log(allService);
-    // const{title,rating,price,detail,img,service_id} = service
+  //   if (loading) {
+  //     return <h1 className="text-7xl">Loading</h1>
+      
+  // }
     return (
         <div>
             <div className="text-start">
         <p
-          className="  text-2xl font-bold mb-2 mt-10"
-          style={{ color: "#84A9CD" }}
+          className=" text-green-400 text-2xl font-bold mb-2 mt-10"
+          // style={{ color: "#E84545" }}
         >
           SERVICE
         </p>
         <h1 className="text-5xl font-bold mb-3">My Services</h1>
         <h1 className="text-xl mb-6">
-          Here is some services that I provide. <br /> Choose the service that meets
+          Here is the services that I provide. <br /> Choose the service that meets
           your need. <br /> Don't worry about the quality. See reviews and feel
           free to add one.
         </h1>

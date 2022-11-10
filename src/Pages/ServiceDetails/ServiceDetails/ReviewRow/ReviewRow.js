@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
+import React, { } from 'react';
+// import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
 
 const ReviewRow = ({reviews}) => {
 
     const {serviceName,userName, review,img} = reviews;
     // console.log(reviews);
 
-    const {user} = useContext(AuthContext);
+    // const {user} = useContext(AuthContext);
 
     return (
         <tr>

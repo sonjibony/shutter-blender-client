@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import React, { useContext } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import axios from "axios";
 import useTitle from "../../hooks/useTitle";
 const Update = () => {
-    useTitle('Edit Review')
+  useTitle("Edit Review");
   const { user } = useContext(AuthContext);
   const { review, ...test } = useLoaderData();
 
@@ -14,23 +14,21 @@ const Update = () => {
     event.preventDefault();
     const form = event.target;
     const review = form.review.value;
-console.log(test._id);
+    console.log(test._id);
     if (test._id) {
       axios
         .put(`http://localhost:5000/reviews/${test._id}`, { review })
         .then((res) => {
           navigation(-1);
         });
-    }
-    else{
-
-        console.log('invalid');
+    } else {
+      console.log("invalid");
     }
   }
   return (
-    <div>
+    <div className="w-11/12 mx-auto">
       <form onSubmit={update}>
-        <h2 className="text-3xl  my-6">Add a review</h2>
+        <h2 className="text-3xl font-bold text-green-400 my-6">Update Your Review.</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-6">
           <input
@@ -59,7 +57,7 @@ console.log(test._id);
         ></textarea>
 
         <input
-          className="btn btn-ghost mb-6"
+          className="btn btn-outline font-extrabold btn-success mb-6"
           type="submit"
           value="Update Review"
         />
