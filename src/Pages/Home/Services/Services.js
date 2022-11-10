@@ -22,15 +22,15 @@ setLoader(false)
 }
   return (
     <div className="w-11/12 mx-auto">
-      <div className="text-start">
+      <div className="text-center">
         <p
-          className=" text-green-400 text-2xl font-bold  mt-10"
+          className="  text-2xl font-bold  mt-10 text-green-300"
           // style={{ color: "#E84545" }}
         >
           SERVICE
         </p>
-        <h1 className="text-5xl font-bold mb-3">My Services</h1>
-        <h1 className="text-xl mb-6">
+        <h1 className="text-5xl font-bold mb-4">My Services</h1>
+        <h1 className="text-xl mb-8">
           Here is some services that I provide. Choose the service that meets
           your need. <br /> Don't worry about the quality. See reviews and feel
           free to add one.
@@ -41,7 +41,7 @@ setLoader(false)
           <ServiceCard key={service.service_id} service={service}></ServiceCard>
         ))}
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-end">
         <Link to="/services">
           <button
             className="btn btn-outline border-2 btn-success text-white font-bold  mt-6 mb-9"
