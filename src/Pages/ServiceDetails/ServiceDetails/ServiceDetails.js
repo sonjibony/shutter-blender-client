@@ -112,7 +112,7 @@ const ServiceDetails = () => {
         <div className="w-11/12 mx-auto mb-10 ">
           {allReviews.length > 0 ? (
             <h2 className="text-3xl mt-5 mb-10 text-center">
-              {allReviews.length} reviews were added
+              {allReviews.length} reviews were added in this service
             </h2>
           ) : (
             <h2 className="text-3xl mt-5 mb-10 text-center">
