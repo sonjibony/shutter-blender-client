@@ -25,7 +25,7 @@ const ServiceCard = ({ service }) => {
             <FaStar className="text-lg text-warning"></FaStar>
             <p className="text-lg"> {rating}</p>
             <Link to={`/services/${_id}`}> 
-              <button className="btn btn-outline font-bold btn-success text-lg border-0" 
+              <button className="btn btn-outline btn-sm font-semibold text-lg btn-success  border-0" 
 
 
               >See Details</button>
