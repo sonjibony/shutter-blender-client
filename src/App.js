@@ -1,6 +1,7 @@
 import { RouterProvider } from 'react-router-dom';
 import './App.css';
 import router from './Router/Routes/Routes';
+// import CountUp from 'react-countup/build/CountUp';
 
 function App() {
   return (

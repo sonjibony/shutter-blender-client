@@ -21,9 +21,9 @@ const ServiceCard = ({ service }) => {
             <p className="">{detail}</p>
           )}{" "}
           <div className="card-actions flex items-center justify-center gap-2">
-            <p className="text-2xl font-semibold">Price: ${price}</p>
-            <FaStar className="text-2xl text-warning"></FaStar>
-            <p className="text-2xl font-semibold"> {rating}</p>
+            <p className="text-lg ">Price: ${price}</p>
+            <FaStar className="text-lg text-warning"></FaStar>
+            <p className="text-lg"> {rating}</p>
             <Link to={`/services/${_id}`}> 
               <button className="btn btn-outline font-bold btn-success text-lg border-0" 
 
