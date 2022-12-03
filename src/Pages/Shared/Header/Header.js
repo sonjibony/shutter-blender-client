@@ -16,7 +16,7 @@ const Header = () => {
     <div className="navbar   py-5">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+          <label tabIndex={0} className="btn btn-xs btn-outline btn-success rounded lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -70,16 +70,17 @@ const Header = () => {
             )}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          <img
-            style={{ height: "50px" }}
-            src="https://cdn-icons-png.flaticon.com/512/1645/1645360.png"
+        <Link to="/">
+          <img className="hidden md:block"
+            style={{ width: "45px" }}
+            src="https://cdn-icons-png.flaticon.com/512/1829/1829130.png"
             alt=""
           />
         </Link>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <Link to="/" className="btn btn-ghost normal-case text-lg lg:text-xl ">
           Shutter Blender
         </Link>
+       
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
@@ -137,11 +138,11 @@ const Header = () => {
         )}
 
         <div className="avatar">
-          <div className="w-10 rounded-full">
+          <div className="w-8 rounded-full">
             {user?.photoURL ? (
               <img src={user?.photoURL} alt="" />
             ) : (
-              <img
+              <img 
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwJoaqh-Ehrbg2Qf6Nk_XiblTuvyyiOwsc2g&usqp=CAU"
                 alt=""
               />

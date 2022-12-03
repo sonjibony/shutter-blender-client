@@ -28,7 +28,7 @@ const Banner = () => {
         <div className="absolute flex justify-end transform -translate-y-1/2 left-5 right-5 bottom-0">
           <a
             href="#slide3"
-            className="btn btn-outline btn-success btn-circle mr-5"
+            className="btn  btn-outline btn-success btn-circle mr-5"
           >
             ❮
           </a>
